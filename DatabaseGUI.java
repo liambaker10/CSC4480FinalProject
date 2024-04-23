@@ -33,7 +33,9 @@ public class DatabaseGUI extends JFrame {
         // Result area
         resultArea = new JTextArea();
         resultArea.setEditable(false);
+        resultArea.setTabSize(10);
         add(new JScrollPane(resultArea), BorderLayout.CENTER);
+        
 
         // Connect to the database
         connectToDatabase();
@@ -43,8 +45,8 @@ public class DatabaseGUI extends JFrame {
         try {
             // Replace placeholders with your database credentials
             String url = "jdbc:oracle:thin:@csdb.csc.villanova.edu:1521/orcl.villanova.edu";
-            String username = "lbaker";
-            String password = "fL02400036";
+            String username = "mgutowsk";
+            String password = "fL02418405";
 
             connection = DriverManager.getConnection(url, username, password);
             System.out.println("Connected to the database");
@@ -77,11 +79,28 @@ public class DatabaseGUI extends JFrame {
             }
 
             resultArea.setText(resultBuilder.toString());
+
+             // Automatically adjust tab size based on content
+             int longestColumnNameLength = getLongestColumnNameLength(metaData);
+             resultArea.setTabSize(longestColumnNameLength * 2); // Adjust tab size based on column name length
+
         } catch (SQLException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Error executing SQL query: " + e.getMessage(), "Error",
                     JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    private int getLongestColumnNameLength(ResultSetMetaData metaData) throws SQLException {
+        int columnCount = metaData.getColumnCount();
+        int longestLength = 0;
+        for (int i = 1; i <= columnCount; i++) {
+            String columnName = metaData.getColumnName(i);
+            if (columnName.length() > longestLength) {
+                longestLength = columnName.length();
+            }
+        }
+        return longestLength;
     }
 
     public static void main(String[] args) {
