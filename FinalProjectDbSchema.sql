@@ -1,31 +1,33 @@
---DROP TABLE song CASCADE CONSTRAINTS;
+DROP TABLE song CASCADE CONSTRAINTS;
 CREATE TABLE song (
-  title    varchar2(50) not null, 
-  artistID    number(4) not null,
-  songID    number(4) not null,
-  releaseDate      date,
-  primary key (songID, title)
-
+  title    VARCHAR2(50) NOT NULL, 
+  artistID NUMBER(4) NOT NULL,
+  songID   NUMBER(4) NOT NULL,
+  releaseDate DATE,
+  genreID     number(4) not null, 
+  PRIMARY KEY (songID),
+  -- FOREIGN KEY (artistID) REFERENCES artist(artistID),
+  -- foreign key (genreID) references genre(genreID)
 );
 
--- DROP TABLE artist CASCADE CONSTRAINTS;
+DROP TABLE artist CASCADE CONSTRAINTS;
 CREATE TABLE artist (
-  name    varchar2(50) not null, 
-  artistID    number(4) not null,
-  primary key (name, artistID)
-
+  name     VARCHAR2(50) NOT NULL, 
+  artistID NUMBER(4) NOT NULL,
+  PRIMARY KEY (artistID)
 );
 
--- DROP TABLE album CASCADE CONSTRAINTS;
+ DROP TABLE album CASCADE CONSTRAINTS;
 CREATE TABLE album (
-  name        varchar2(50) not null, 
-  albumID     number(4) not null,
-  artistID    number(4) not null,
-  primary key (name, albumID)
-
+  name     VARCHAR2(50) NOT NULL, 
+  albumID  NUMBER(4) NOT NULL,
+  artistID NUMBER(4) NOT NULL,
+  PRIMARY KEY (albumID),
+  FOREIGN KEY (artistID) REFERENCES artist(artistID)
 );
 
--- DROP TABLE applicationUser CASCADE CONSTRAINTS;
+
+DROP TABLE applicationUser CASCADE CONSTRAINTS;
 CREATE TABLE applicationUser (
   fname    varchar2(15) not null, 
   lname    varchar2(15) not null,
@@ -34,9 +36,11 @@ CREATE TABLE applicationUser (
   primary key (userID)
 );
 
--- DROP TABLE genre CASCADE CONSTRAINTS;
+DROP TABLE genre CASCADE CONSTRAINTS;
 CREATE TABLE genre (
+  genreID    number(4) not null,
   name       varchar2(20) not null,
   bpm       number(10,2),
-  primary key (name)
+  primary key (genreID)
 );
+

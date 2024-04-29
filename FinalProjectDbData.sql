@@ -1,9 +1,9 @@
 -- Inserting records into the "song" table
-INSERT INTO song (title, artistID, songID, releaseDate) VALUES ('Bohemian Rhapsody', 1, 1, TO_DATE('1975-10-31', 'YYYY-MM-DD'));
-INSERT INTO song (title, artistID, songID, releaseDate) VALUES ('Smells Like Teen Spirit', 2, 2, TO_DATE('1991-09-10', 'YYYY-MM-DD'));
-INSERT INTO song (title, artistID, songID, releaseDate) VALUES ('Billie Jean', 3, 3, TO_DATE('1983-01-02', 'YYYY-MM-DD'));
-INSERT INTO song (title, artistID, songID, releaseDate) VALUES ('Hotel California', 4, 4, TO_DATE('1976-12-08', 'YYYY-MM-DD'));
-INSERT INTO song (title, artistID, songID, releaseDate) VALUES ('Hey Jude', 5, 5, TO_DATE('1968-08-26', 'YYYY-MM-DD'));
+INSERT INTO song (title, artistID, songID, releaseDate, genreID) VALUES ('Bohemian Rhapsody', 1, 1, TO_DATE('1975-10-31', 'YYYY-MM-DD'), 1);
+INSERT INTO song (title, artistID, songID, releaseDate, genreID) VALUES ('Smells Like Teen Spirit', 2, 2, TO_DATE('1991-09-10', 'YYYY-MM-DD'), 1);
+INSERT INTO song (title, artistID, songID, releaseDate, genreID) VALUES ('Billie Jean', 3, 3, TO_DATE('1983-01-02', 'YYYY-MM-DD'), 2);
+INSERT INTO song (title, artistID, songID, releaseDate, genreID) VALUES ('Hotel California', 4, 4, TO_DATE('1976-12-08', 'YYYY-MM-DD'), 1);
+INSERT INTO song (title, artistID, songID, releaseDate, genreID) VALUES ('Hey Jude', 5, 5, TO_DATE('1968-08-26', 'YYYY-MM-DD'), 1);
 
 -- Inserting records into the "artist" table
 INSERT INTO artist (name, artistID) VALUES ('Queen', 1);
@@ -28,8 +28,9 @@ INSERT INTO applicationUser (fname, lname, userID, username) VALUES ('Bob', 'Bro
 INSERT INTO applicationUser (fname, lname, userID, username) VALUES ('Emily', 'Davis', 5, 'emilyd');
 
 -- Inserting records into the "genre" table
-INSERT INTO genre (name, bpm) VALUES ('Rock', NULL);
-INSERT INTO genre (name, bpm) VALUES ('Grunge', NULL);
-INSERT INTO genre (name, bpm) VALUES ('Pop', NULL);
-INSERT INTO genre (name, bpm) VALUES ('Classic Rock', NULL);
-INSERT INTO genre (name, bpm) VALUES ('Psychedelic Rock', NULL);
+INSERT INTO genre (genreID, name, bpm) VALUES (1, 'Rock', NULL);
+INSERT INTO genre (genreID, name, bpm) VALUES (2, 'Pop', NULL);
+
+
+
+
