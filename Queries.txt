@@ -1,0 +1,39 @@
+-- Create a playlist with Jazz genre songs
+INSERT INTO playlist (playlistName, songs, userID)
+SELECT 'Jazz Playlist', 
+       LISTAGG(DISTINCT title, ', ') WITHIN GROUP (ORDER BY title) AS songs, 
+       3  -- Assigning to userID 3 as an example (Alice Johnson)
+FROM song 
+WHERE genreID = (SELECT genreID FROM genre WHERE name = 'Jazz');  -- 3 is the genreID for Jazz
+
+-- Create playlist with Rock genre songs
+INSERT INTO playlist (playlistName, songs, userID)
+SELECT 'Rock Playlist', 
+       LISTAGG(DISTINCT  title, ', ') WITHIN GROUP (ORDER BY title) AS songs, 
+       1  -- Assigning to userID 1 as an example
+FROM song 
+WHERE genreID = (SELECT genreID FROM genre WHERE name = 'Rock');
+
+-- Create a playlist with Pop genre songs
+INSERT INTO playlist (playlistName, songs, userID)
+SELECT 'Pop Playlist', 
+       LISTAGG(DISTINCT title, ', ') WITHIN GROUP (ORDER BY title) AS songs, 
+       2  -- Assigning to userID 2 as an example
+FROM song 
+WHERE genreID = (SELECT genreID FROM genre WHERE name = 'Pop');
+
+-- Create a playlist with Country genre songs
+INSERT INTO playlist (playlistName, songs, userID)
+SELECT 'Country Playlist', 
+       LISTAGG(DISTINCT title, ', ') WITHIN GROUP (ORDER BY title) AS songs, 
+       4  -- Assigning to userID 4
+FROM song 
+WHERE genreID = (SELECT genreID FROM genre WHERE name = 'Country');
+
+-- Create a playlist with Latino genre songs
+INSERT INTO playlist (playlistName, songs, userID)
+SELECT 'Latino Playlist', 
+       LISTAGG(DISTINCT title, ', ') WITHIN GROUP (ORDER BY title) AS songs, 
+       5  -- Assigning to userID 2 as an example
+FROM song 
+WHERE genreID = (SELECT genreID FROM genre WHERE name = 'Latino');
